@@ -16,22 +16,25 @@
             <th>標題</th>
             <th>連結</th>
             <th>內文</th>
+            <th>內文2</th>
         </tr>
     {% for nba_news in all_nba_news %}
         <tr>
             <td> {{ nba_news.nba_time }} </td>
             <td> {{ nba_news.nba_title }} </td>
             <td> {{ nba_news.nba_url }} </td>
-            <td><button>
-                    
+            <td><button>   
                     <p><a href="{{ nba_news.nba_url }}"target="_blank">連結</a></p>
                 </button>
             </td>
+            <td><button id='button'>A </button></td>
         </tr>
     {% endfor %}
     </table>
 
+    $("#button").one('click', function() {  })
     
 </body>
 </html>
 <div>
+
