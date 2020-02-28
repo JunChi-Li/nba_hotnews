@@ -21,13 +21,18 @@ def simple_crawl(request):
 
     #         pre_time=''.join([x for x in news.find('b').text if x.isdigit()])
     #         if '小時' in news.find('b').text:
-    #             news_time=time.strftime("%Y/%m/%d, %H:%M", time.localtime(time.time()-int(pre_time)*60*60))
+    #             news_time=time.strftime("%Y/%m/%d, %H:%M", time.localtime(time.time()-int(pre_time)*60*60+8*60*60))
     #         elif '分鐘' in news.find('b').text:
-    #             news_time=time.strftime("%Y/%m/%d, %H:%M", time.localtime(time.time()-int(pre_time)*60))
+    #             news_time=time.strftime("%Y/%m/%d, %H:%M", time.localtime(time.time()-int(pre_time)*60+8*60*60))
     #         else:
-    #             news_time=time.strftime("%Y/%m/%d, %H:%M", time.localtime(time.time()-int(pre_time)))
+    #             news_time=time.strftime("%Y/%m/%d, %H:%M", time.localtime(time.time()-int(pre_time)+8*60*60))
 
-    #         news_content=news.find('p').text
+    #         res1 = requests.get(news_url)
+    #         soup1 = BeautifulSoup(res1.text,"html.parser")
+    #         list = []
+    #         for p in soup1.select('#story_body_content p')[:-1]:
+    #             list.append(p.text.strip())
+    #         news_content = ' '.join(list)
 
 
 
@@ -40,13 +45,14 @@ def simple_crawl(request):
     return render(request,'simple_crawl.html',locals())
     
 
-# def show_news(request):
-#     rspdata={"a":"1"}
 
-#     return render(request, "show_news.html", rspdata)
 
-def detail_view(request, news_id):
-    return render(request, 'show_news.html', locals())
+def detail_news(request, slug):
+    nbanews = nba_news.objects.get(slug = slug)
+    context = {
+        'nba_news' : nbanews
+    }
+    return render(request, 'show_news.html', context)
 
 class nba_newsViewSet(viewsets.ModelViewSet):
     queryset = nba_news.objects.all().order_by('-nba_time')

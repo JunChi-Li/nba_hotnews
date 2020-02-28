@@ -5,6 +5,6 @@ class nba_newsSerializer(serializers.ModelSerializer):
     class Meta:
         model = nba_news
         fields = [
-            'id','nba_title', 'nba_content', 'nba_url', 'nba_time', 
+            'slug','nba_title', 'nba_content', 'nba_url', 'nba_time', 
   
         ] 
