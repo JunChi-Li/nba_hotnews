@@ -39,7 +39,7 @@ query-string==2019.4.13
 queuelib==1.5.0
 request==2019.4.13
 requests==2.23.0
-Scrapy==1.8.0
+Scrapy==2.6.1
 scrapy-djangoitem==1.1.1
 scrapyd==1.2.1
 scrapyd-client==1.1.0
